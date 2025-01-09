@@ -21,9 +21,18 @@ public class Main {
             }
             System.out.print("Enter the second number: ");
             int secondNumber = sc.nextInt();
-            System.out.println("Do you want to do another calculation?");
-            calculation(firstNumber, operator, secondNumber);
+            System.out.println("= " + calculation(firstNumber, operator, secondNumber));
+            wantToContinue = newCalculation();
         }
+    }
+
+    public static boolean newCalculation () {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Do you want to do a new calculation? :");
+        return switch (scanner.next().charAt(0)) {
+            case 'n', 'N' -> false;
+            default -> true;
+        };
     }
 
     public static int calculation (int firstNumber, char operator, int secondNumber) {
