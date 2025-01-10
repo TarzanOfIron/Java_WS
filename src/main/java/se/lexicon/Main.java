@@ -4,8 +4,104 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        calculatorInterFace();
+
+
+
+        //calculatorInterFace();
+        OptionalCalculator();
     }
+
+    public static void OptionalCalculator() {
+        boolean wantToContinue = true;
+        int result;
+        char operator;
+        while (wantToContinue) {
+            result = newNumber();
+            while (true) {
+                operator = newChar();
+                if (operator == '=') {
+                    break;
+                } else if (!isAnOperator(operator)){
+                    System.out.println("Not a valid input");
+                    continue;
+                }
+                result = (int) calculation(result,operator,newNumber());
+            }
+            System.out.println("= " +result);
+            wantToContinue = !newCalculation();
+        }
+    }
+
+    public static boolean isAnOperator (char operator) {
+        return  operator == '+' || operator == '-' || operator == '/' || operator == '*';
+    }
+
+   // public static boolean notANumber (int number)
+
+
+    public static char newChar () {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("For adding a new operator enter one, or to get your result enter \"=\"");
+        char operator = sc.next().charAt(0);
+        return operator;
+    }
+
+    public static int newNumber() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter a number: ");
+        return sc.nextInt();
+    }
+
+    public static boolean newCalculation() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Do you want to do a new calculation?");
+        return sc.next().charAt(0) == 'n' || sc.next().charAt(0) == 'N';
+    }
+
+    public static double calculation(double firstNumber, char operator, double secondNumber) {
+        return switch (operator) {
+            case '+' -> firstNumber + secondNumber;
+            case '-' -> firstNumber - secondNumber;
+            case '*' -> firstNumber * secondNumber;
+            case '/' -> firstNumber / secondNumber;
+            default -> 0;
+        };
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
 
     public static void calculatorInterFace() {
         Scanner sc = new Scanner(System.in);
@@ -15,7 +111,7 @@ public class Main {
             int firstNumber = sc.nextInt();
             System.out.print("Enter the operator: ");
             char operator = sc.next().charAt(0);
-            if (!operatorValidator(operator)) {
+            if (!isAChar(operator)) {
                 System.out.println("Invalid operator, try again.");
                 continue;
             }
@@ -26,7 +122,11 @@ public class Main {
         }
     }
 
-    public static boolean newCalculation () {
+    public static boolean isAChar (char ch) {
+        return  ch == '+' || ch == '-' || ch == '/' || ch == '*';
+    }
+
+    public static boolean newCalculation() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Do you want to do a new calculation? :");
         return switch (scanner.next().charAt(0)) {
@@ -35,22 +135,22 @@ public class Main {
         };
     }
 
-    public static int calculation (int firstNumber, char operator, int secondNumber) {
-         return switch (operator) {
+    public static double calculation(double firstNumber, char operator, double secondNumber) {
+        return switch (operator) {
             case '+' -> firstNumber + secondNumber;
             case '-' -> firstNumber - secondNumber;
             case '*' -> firstNumber * secondNumber;
             case '/' -> firstNumber / secondNumber;
             default -> 0;
-            };
+        };
     }
-     public static boolean operatorValidator (char operator) {
+
+    public static boolean operatorValidator(char operator) {
         return switch (operator) {
             case '+', '-', '*', '/' -> true;
             default -> false;
         };
-     }
-
-
-
+    }
 }
+
+*/
