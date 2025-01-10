@@ -4,19 +4,20 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-
-
-
         //calculatorInterFace();
         OptionalCalculator();
     }
 
     public static void OptionalCalculator() {
         boolean wantToContinue = true;
-        int result;
+        String equation = "";
+        int result, number1;
         char operator;
         while (wantToContinue) {
+            System.out.println("Start your calcualtion");
             result = newNumber();
+            equation += result + " ";
+            System.out.print(equation);
             while (true) {
                 operator = newChar();
                 if (operator == '=') {
@@ -25,9 +26,14 @@ public class Main {
                     System.out.println("Not a valid input");
                     continue;
                 }
-                result = (int) calculation(result,operator,newNumber());
+                System.out.print(equation + operator + " ");
+                number1 = newNumber();
+                equation += operator + " " + number1 + " ";
+                System.out.print(equation);
+                result = (int) calculation(result,operator,number1);
             }
-            System.out.println("= " +result);
+            System.out.println(equation + "= " +result);
+            equation = "";
             wantToContinue = !newCalculation();
         }
     }
@@ -41,14 +47,14 @@ public class Main {
 
     public static char newChar () {
         Scanner sc = new Scanner(System.in);
-        System.out.println("For adding a new operator enter one, or to get your result enter \"=\"");
+        //System.out.print("For adding a new operator enter one, or to get your result enter \"=\": ");
         char operator = sc.next().charAt(0);
         return operator;
     }
 
     public static int newNumber() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter a number: ");
+        //System.out.print("Enter a number: ");
         return sc.nextInt();
     }
 
