@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         //calculatorInterFace();
-        OptionalCalculator();
+        //OptionalCalculator();
     }
 
     public static void OptionalCalculator() {
@@ -24,6 +24,7 @@ public class Main {
                     break;
                 } else if (!isAnOperator(operator)){
                     System.out.println("Not a valid input");
+                    System.out.print(equation);
                     continue;
                 }
                 System.out.print(equation + operator + " ");
